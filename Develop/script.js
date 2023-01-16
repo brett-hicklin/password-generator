@@ -40,21 +40,23 @@ function generatePassword(){
   var passwordString = ''
   for (let i=0; i < passwordLength; i++ ){
     var passwordReqIndex = getRandomInt(passwordReqs.length)
+
     if (passwordReqs[passwordReqIndex] === 'lowercase'){
       var lowercaseIndex = getRandomInt(alphabet.length)
       passwordString = passwordString + alphabet[lowercaseIndex]
-    }
 
-    if (passwordReqs[passwordReqIndex] === 'uppercase'){
-      
-    }
+    } else if (passwordReqs[passwordReqIndex] === 'uppercase'){
+      var uppercaseIndex = getRandomInt(alphabet.length)
+      passwordString = passwordString + alphabet[uppercaseIndex].toUpperCase()
 
-    if (passwordReqs[passwordReqIndex] === 'numeric'){
-      
-    }
+    } else if (passwordReqs[passwordReqIndex] === 'numeric'){
+      var number = getRandomInt(10)
+      passwordString = passwordString + number;
 
-    if (passwordReqs[passwordReqIndex] === 'specialChar'){
       
+    } else if (passwordReqs[passwordReqIndex] === 'specialChar'){
+      var specialCharIndex = getRandomInt(symobols.length)
+      passwordString = passwordString + symobols[specialCharIndex]
     }
 
   console.log(passwordReqIndex)
