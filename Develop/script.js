@@ -36,12 +36,13 @@ function getRandomInt(max){
 function generatePassword(){
   var passwordLength = 8;
   // var passwordReqs = getPasswordReqs();
-  var passwordReqs = ['uppercase']
-
+  var passwordReqs = ['lowercase']
+  var passwordString = ''
   for (let i=0; i < passwordLength; i++ ){
     var passwordReqIndex = getRandomInt(passwordReqs.length)
     if (passwordReqs[passwordReqIndex] === 'lowercase'){
-
+      var lowercaseIndex = getRandomInt(alphabet.length)
+      passwordString = passwordString + alphabet[lowercaseIndex]
     }
 
     if (passwordReqs[passwordReqIndex] === 'uppercase'){
@@ -51,7 +52,7 @@ function generatePassword(){
     if (passwordReqs[passwordReqIndex] === 'numeric'){
       
     }
-    
+
     if (passwordReqs[passwordReqIndex] === 'specialChar'){
       
     }
