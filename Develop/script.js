@@ -7,11 +7,11 @@ var symobols = ['!','"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', 
 
 
 // collects the data from which character requirements will be used for password, returns as array.
-function getPasswordReqs(){
+function getpasswordRequirementsGiven(){
   var isLowercase = true;
   var isUppercase = true;
-  var isNumeric = false;
-  var isSpecialChar = false;
+  var isNumeric = true;
+  var isSpecialChar = true;
   var requirements = []
   if (isLowercase){
     requirements.push('lowercase')
@@ -35,33 +35,53 @@ function getRandomInt(max){
 
 function generatePassword(){
   var passwordLength = 8;
-  // var passwordReqs = getPasswordReqs();
-  var passwordReqs = ['lowercase']
+  var passwordRequirementsCompleted = [];
+  /* create an empty array to track requirements met
+  each time we go into an if block below we'll push that met requirement 
+  after looping is done and passwordString is complete now we compare the requirements given array to the 
+  requirements met array 
+  for each item in the passwordsrequirementsgiven 
+  check that it exists in passwordRequirementsCompleted
+  re-run loop */ 
+  var passwordRequirementsGiven = getpasswordRequirementsGiven();
+  // var passwordRequirementsGiven = ['lowercase']
   var passwordString = ''
   for (let i=0; i < passwordLength; i++ ){
-    var passwordReqIndex = getRandomInt(passwordReqs.length)
+    var passwordReqIndex = getRandomInt(passwordRequirementsGiven.length)
 
-    if (passwordReqs[passwordReqIndex] === 'lowercase'){
+    if (passwordRequirementsGiven[passwordReqIndex] === 'lowercase'){
+      passwordRequirementsCompleted.push('lowercase')
       var lowercaseIndex = getRandomInt(alphabet.length)
       passwordString = passwordString + alphabet[lowercaseIndex]
 
-    } else if (passwordReqs[passwordReqIndex] === 'uppercase'){
+    } else if (passwordRequirementsGiven[passwordReqIndex] === 'uppercase'){
+      passwordRequirementsCompleted.push('uppercase')
       var uppercaseIndex = getRandomInt(alphabet.length)
       passwordString = passwordString + alphabet[uppercaseIndex].toUpperCase()
 
-    } else if (passwordReqs[passwordReqIndex] === 'numeric'){
+    } else if (passwordRequirementsGiven[passwordReqIndex] === 'numeric'){
+      passwordRequirementsCompleted.push('numeric')
       var number = getRandomInt(10)
       passwordString = passwordString + number;
 
       
-    } else if (passwordReqs[passwordReqIndex] === 'specialChar'){
+    } else if (passwordRequirementsGiven[passwordReqIndex] === 'specialChar'){
+      passwordRequirementsCompleted.push('specialChar')
       var specialCharIndex = getRandomInt(symobols.length)
       passwordString = passwordString + symobols[specialCharIndex]
     }
 
-  console.log(passwordReqIndex)
+  console.log(passwordString)
   }
+   for (let i = 0; i < passwordRequirementsGiven.length; i++){
+    if (!passwordRequirementsCompleted.includes(passwordRequirementsGiven[i])){
+      generatePassword();
+    }
+   }  
+  return passwordString
+
 }
+
 
 // Write password to the #password input
 function writePassword() {
