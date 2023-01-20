@@ -3,8 +3,11 @@
 var generateBtn = document.querySelector("#generate");
 var alphabet = ['a', 'b', 'c', 'd' ,'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 var symbols = ['!','"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
-
-
+var startPrompt = prompt("How many characters would you like to have in your password? Please select between 8 through 128 characters")
+var selectLowercase = prompt("Click 'OK' to confirm lowercase characters in your password")
+var selectUppercase = prompt("Click 'OK' to confirm uppercase characters in your password")
+var selectNumbers = prompt("Click 'OK' to confirm numeric characters in your password")
+var selectSpecialCharacters = prompt("Click 'OK' to confirm special characters in your password")
 
 // collects the data from which character requirements will be used for password, returns as array.
 function getpasswordRequirementsGiven(){
@@ -94,7 +97,17 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
+/* on button click, prompt appears, asking how many chars? (must be between 8 and 128)
+if not between 8 and 128, alert appears saying "please choose between 8 and 128 characters"
+click ok, and must click generate password again to restart
 
+when 8-128 characters entered, prompt appears asking to click ok to confirm for lowercase.
+cancel will ignore.
+repeat for all others, eg uppercase, numbers, special chars. 
+if cancel click on all, alert says you must choose at least one character type
+
+
+*/ 
   
 
 
