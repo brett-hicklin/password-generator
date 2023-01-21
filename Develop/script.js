@@ -91,14 +91,11 @@ function startPrompt() {
 
   if (selectLowercase) {
     requirements.push("lowercase");
-  }
-  if (selectUppercase) {
+  } else if (selectUppercase) {
     requirements.push("uppercase");
-  }
-  if (selectNumbers) {
+  } else if (selectNumbers) {
     requirements.push("numeric");
-  }
-  if (selectSpecialCharacters) {
+  } else if (selectSpecialCharacters) {
     requirements.push("specialChar");
   } else {
     alert("You must select at least one character requirement!");
@@ -147,7 +144,7 @@ function generatePassword() {
       passwordString = passwordString + symbols[specialCharIndex];
     }
 
-    // run console.log(passwordString) to see password created
+    // run console.log(passwordString) to see how password string is created/iterated
   }
   for (let i = 0; i < passwordRequirementsGiven.length; i++) {
     if (!passwordRequirementsCompleted.includes(passwordRequirementsGiven[i])) {
