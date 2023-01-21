@@ -91,13 +91,17 @@ function startPrompt() {
 
   if (selectLowercase) {
     requirements.push("lowercase");
-  } else if (selectUppercase) {
+  }
+  if (selectUppercase) {
     requirements.push("uppercase");
-  } else if (selectNumbers) {
+  }
+  if (selectNumbers) {
     requirements.push("numeric");
-  } else if (selectSpecialCharacters) {
+  }
+  if (selectSpecialCharacters) {
     requirements.push("specialChar");
-  } else {
+  } 
+  if (requirements.length < 1){
     alert("You must select at least one character requirement!");
   }
 
