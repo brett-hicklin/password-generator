@@ -63,7 +63,8 @@ var symbols = [
   "}",
   "~",
 ];
-
+// this function initializes the prompts on the screen to take user input for password type and length.
+// it also collects that information into an object that is used in the generatePassword function
 function startPrompt() {
   var selectAmountCharacters = prompt(
     "How many characters would you like to have in your password? Please select between 8 through 128 characters"
@@ -110,11 +111,11 @@ function startPrompt() {
     passwordLength: selectAmountCharacters,
   };
 }
-
+//gets a random number to help randomize the generation of the password characters
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-
+// takes the input from startPrompt, and the random integer from getRandomInt to create a random password based on users input
 function generatePassword() {
   var passwordRequirementsCompleted = [];
 
@@ -159,7 +160,7 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  //
+  
 
   var password = generatePassword();
   if (password === undefined) {
@@ -174,10 +175,4 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-//make sure to add writePassword() to end of startPrompt()
 
-/* need to add something that returns another prompt if characters selected isnt between 8 and 128
-need to fix re-prompt when generator takes more than 1 attempt to get password to meet requirements
-
-
-*/
