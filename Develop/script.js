@@ -116,11 +116,11 @@ function startPrompt() {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-// takes the input from startPrompt, and the random integer from getRandomInt to create a random password based on users input
-function generatePassword() {
+// takes the input from promptResults, and the random integer from getRandomInt to create a random password based on users input
+function generatePassword(promptResults) {
   var passwordRequirementsCompleted = [];
 
-  var promptResults = startPrompt();
+  
   if (promptResults === undefined) {
     return;
   }
@@ -148,11 +148,11 @@ function generatePassword() {
       passwordString = passwordString + symbols[specialCharIndex];
     }
 
-    // run console.log(passwordString) to see how password string is created/iterated
+    //run console.log(passwordString) to see how password string is created/iterated
   }
   for (let i = 0; i < passwordRequirementsGiven.length; i++) {
     if (!passwordRequirementsCompleted.includes(passwordRequirementsGiven[i])) {
-      return generatePassword();
+      return generatePassword(promptResults);
     }
   }
 
@@ -162,8 +162,8 @@ function generatePassword() {
 // Write password to the #password input
 function writePassword() {
   
-
-  var password = generatePassword();
+  var promptResults = startPrompt();
+  var password = generatePassword(promptResults);
   if (password === undefined) {
     return;
   }
